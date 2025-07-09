@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- 主要页面 -->
+    <url>
+        <loc>https://jcaigc.cn/</loc>
+        <lastmod>2025-07-09</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- 服务页面 -->
+    <url>
+        <loc>https://jcaigc.cn</loc>
+        <lastmod>2025-07-09</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- 支持页面 -->
+    <url>
+        <loc>https://jcaigc.cn</loc>
+        <lastmod>2025-07-09</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://jcaigc.cn</loc>
+        <lastmod>2025-07-09</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://jcaigc.cn</loc>
+        <lastmod>2025-07-09</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://jcaigc.cn/login</loc>
+        <lastmod>2025-07-09</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- 重要文档 -->
+    <url>
+        <loc>https://jcaigc-doc.feishu.cn/wiki/FlYEwlKusiC6lZkjLcocqZ0LnKe</loc>
+        <lastmod>2025-07-09</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+</urlset>

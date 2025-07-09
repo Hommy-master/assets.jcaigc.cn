@@ -2,18 +2,51 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简创AIGC服务平台</title>
+    <title>简创AIGC服务平台 - 领先的人工智能服务提供商</title>
+    <meta name="description" content="简创AIGC提供领先的人工智能服务，包括API密钥获取、技术支持、开发文档等，赋能开发者与创新企业开启智能应用新时代">
+    <meta name="keywords" content="人工智能服务,AIGC,API密钥,AI开发,技术支持,AI文档,机器学习API">
+    <meta name="author" content="简创AIGC">
+    <link rel="canonical" href="https://jcaigc.cn">
+    <link rel="icon" href="/favicon.ico"/>
     
-    <!-- Google Analytics 代码下面的代码仅适用于https://assets.jcaigc.cn -->
-    <!-- Google tag (gtag.js) -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jcaigc.cn">
+    <meta property="og:title" content="简创AIGC服务平台 - 领先的人工智能服务提供商">
+    <meta property="og:description" content="获取API密钥、技术支持和开发文档，开启您的AI开发之旅">
+    <meta property="og:image" content="https://jcaigc.cn/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jcaigc.cn">
+    <meta property="twitter:title" content="简创AIGC服务平台 - 领先的人工智能服务提供商">
+    <meta property="twitter:description" content="获取API密钥、技术支持和开发文档，开启您的AI开发之旅">
+    <meta property="twitter:image" content="https://jcaigc.cn/twitter-image.jpg">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EERCZJLZJC"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EERCZJLZJC');
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "简创AIGC",
+      "url": "https://jcaigc.cn",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer service",
+        "email": "gogoshine168@gmail.com",
+        "availableLanguage": ["Chinese"]
+      }
+    }
     </script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -78,6 +111,32 @@
             margin: 0 auto;
             line-height: 1.6;
             font-weight: 300;
+        }
+        
+        .breadcrumb {
+            background: rgba(16, 18, 27, 0.4);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            margin: 1.5rem auto;
+            display: inline-block;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(92, 70, 156, 0.2);
+        }
+        
+        .breadcrumb a {
+            color: #a0a0ff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .breadcrumb a:hover {
+            color: #8E54E9;
+        }
+        
+        .breadcrumb span {
+            margin: 0 8px;
+            color: #5c469c;
         }
         
         .cards-container {
@@ -318,6 +377,7 @@
             border-bottom: 1px solid #00dbde;
         }
         
+        
         footer {
             text-align: center;
             padding: 3rem 0 2rem;
@@ -325,6 +385,25 @@
             color: #8888cc;
             font-size: 1rem;
             border-top: 1px solid rgba(92, 70, 156, 0.3);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: #a0a0ff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #8E54E9;
         }
         
         .tech-grid {
@@ -465,6 +544,10 @@
                 right: 10px;
                 font-size: 0.75rem;
             }
+            
+            .sitemap-links {
+                grid-template-columns: 1fr;
+            }
         }
         
         .hex-grid {
@@ -516,6 +599,18 @@
         <header>
             <div class="logo">人工智能服务平台</div>
             <p class="subtitle">领先的人工智能服务，赋能开发者与创新企业，开启智能应用新时代</p>
+            
+            <div class="breadcrumb">
+                <a href="/">首页</a>
+                <span>/</span>
+                <a href="#">扣子工作流定制服务</a>
+                <span>/</span>
+                <a href="#">视频编辑插件私有化部署</a>
+                <span>/</span>
+                <a href="#">视频分发</a>
+                <span>/</span>
+                <a href="#">扣子插件APIKey</a>
+            </div>
         </header>
         
         <div class="cards-container">
@@ -538,7 +633,7 @@
                 <p class="card-content">获取实时动态、技术更新和帮助文档，掌握最新资讯</p>
                 <div class="qr-container">
                     <div class="qr-image">
-                        <img src="/gzh.jpg" alt="公众号二维码">
+                        <img src="/gzh.jpg" alt="简创AIGC公众号二维码">
                     </div>
                 </div>
                 <p class="qr-text">扫码关注公众号</p>
@@ -552,7 +647,7 @@
                 <p class="card-content">扫码联系我们的技术专家，获取一对一专业支持</p>
                 <div class="qr-container">
                     <div class="qr-image">
-                        <img src="/jishu.png" alt="技术支持二维码">
+                        <img src="/jishu.png" alt="简创AIGC技术支持二维码">
                     </div>
                 </div>
                 <p class="qr-text">技术咨询二维码</p>
@@ -572,10 +667,12 @@
                 或直接访问: <a href="https://jcaigc-doc.feishu.cn/wiki/FlYEwlKusiC6lZkjLcocqZ0LnKe" class="doc-link">https://jcaigc-doc.feishu.cn/wiki/FlYEwlKusiC6lZkjLcocqZ0LnKe</a>
             </p>
         </div>
-        
         <footer>
             <p>© 2025 简创AIGC 人工智能服务平台 | 提供稳定可靠的插件服务</p>
             <p style="margin-top: 0.8rem;">技术支持V: gogoshine-com | 商务合作: gogoshine168@gmail.com</p>
+            <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #6666aa;">
+                粤ICP备2025431894号 | 粤公网安备2025431894号
+            </p>
         </footer>
     </div>
     
