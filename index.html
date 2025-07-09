@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简创AIGC服务平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #1a1a40, #0d0d26);
+            color: #e0e0ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 25%, rgba(67, 97, 238, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(101, 198, 172, 0.15) 0%, transparent 40%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00dbde, #fc00ff, #00dbde);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(92, 70, 156, 0.5);
+            animation: glow 3s infinite alternate;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: #a0a0ff;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        
+        .card {
+            background: rgba(16, 18, 27, 0.6);
+            border: 1px solid rgba(92, 70, 156, 0.4);
+            border-radius: 20px;
+            width: 350px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff00cc, #333399, #00dbde, #fc00ff);
+            z-index: -2;
+            border-radius: 22px;
+            opacity: 0.7;
+        }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(16, 18, 27, 0.8), rgba(16, 18, 27, 0.9));
+            z-index: -1;
+            border-radius: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(92, 70, 156, 0.7);
+        }
+        
+        .card-icon {
+            font-size: 3.8rem;
+            margin-bottom: 1.8rem;
+            background: linear-gradient(135deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .card-title {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .card-content {
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            color: #c0c0ff;
+            font-size: 1.1rem;
+        }
+        
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.8rem 0;
+        }
+        
+        .qr-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            background: #fff;
+            padding: 10px;
+        }
+        
+        .qr-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .qr-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, 
+                    transparent 0%, 
+                    rgba(255, 255, 255, 0.1) 50%, 
+                    transparent 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .qr-image::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            z-index: 2;
+        }
+        
+        .qr-text {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #a0a0ff;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #4776E6, #8E54E9);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 7px 20px rgba(142, 84, 233, 0.5);
+            margin: 15px 0;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(142, 84, 233, 0.8);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn i {
+            margin-right: 10px;
+        }
+        
+        .doc-section {
+            background: rgba(16, 18, 27, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem auto;
+            max-width: 850px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(92, 70, 156, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .doc-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00dbde, #fc00ff, #00dbde);
+            z-index: -1;
+            border-radius: 22px;
+            opacity: 0.4;
+        }
+        
+        .doc-title {
+            font-size: 2rem;
+            margin-bottom: 1.8rem;
+            color: #ffffff;
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .doc-description {
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            color: #c0c0ff;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .doc-link {
+            color: #8E54E9;
+            text-decoration: none;
+            border-bottom: 1px dashed #8E54E9;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .doc-link:hover {
+            color: #00dbde;
+            border-bottom: 1px solid #00dbde;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+            color: #8888cc;
+            font-size: 1rem;
+            border-top: 1px solid rgba(92, 70, 156, 0.3);
+        }
+        
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .grid-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .grid-horizontal {
+            width: 100%;
+            height: 1px;
+            top: 0;
+            left: 0;
+        }
+        
+        .grid-vertical {
+            height: 100%;
+            width: 1px;
+            top: 0;
+            left: 0;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(92, 70, 156, 0.4);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px rgba(92, 70, 156, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(92, 70, 156, 0.8), 0 0 30px rgba(67, 97, 238, 0.6);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+        
+        .hex-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            overflow: hidden;
+        }
+        
+        .hex {
+            position: absolute;
+            width: 100px;
+            height: 57.74px;
+            background: rgba(255, 255, 255, 0.1);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation: rotate 60s infinite linear;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 科技网格背景 -->
+    <div class="tech-grid" id="grid"></div>
+    
+    <!-- 六边形网格背景 -->
+    <div class="hex-grid" id="hex-grid"></div>
+    
+    <!-- 浮动粒子 -->
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">人工智能服务平台</div>
+            <p class="subtitle">领先的人工智能服务，赋能开发者与创新企业，开启智能应用新时代</p>
+        </header>
+        
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h3 class="card-title">获取API密钥</h3>
+                <p class="card-content">注册并获取您的专属API密钥，开启人工智能服务之旅，探索无限可能</p>
+                <a href="https://jcaigc.cn" class="btn">
+                    <i class="fas fa-external-link-alt"></i> 立即获取API Key
+                </a>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fab fa-weixin"></i>
+                </div>
+                <h3 class="card-title">关注公众号</h3>
+                <p class="card-content">获取实时动态、技术更新和帮助文档，掌握最新资讯</p>
+                <div class="qr-container">
+                    <div class="qr-image">
+                        <img src="/gzh.jpg" alt="公众号二维码">
+                    </div>
+                </div>
+                <p class="qr-text">扫码关注公众号</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="card-title">技术支持</h3>
+                <p class="card-content">扫码联系我们的技术专家，获取一对一专业支持</p>
+                <div class="qr-container">
+                    <div class="qr-image">
+                        <img src="/jishu.png" alt="技术支持二维码">
+                    </div>
+                </div>
+                <p class="qr-text">技术咨询二维码</p>
+            </div>
+        </div>
+        
+        <div class="doc-section">
+            <h3 class="doc-title">帮助文档</h3>
+            <p class="doc-description">
+                我们的详细文档包含扣子插件使用指南、工作流示例和成品工作流，助您快速集成服务到您的应用中。
+                无论您是初学者还是经验丰富的开发者，都能找到所需资源，解决开发过程中的各种挑战。
+            </p>
+            <a href="https://jcaigc-doc.feishu.cn/wiki/FlYEwlKusiC6lZkjLcocqZ0LnKe" class="btn">
+                <i class="fas fa-book"></i> 查看帮助文档
+            </a>
+            <p style="margin-top: 2rem; font-size: 1.1rem;">
+                或直接访问: <a href="https://jcaigc-doc.feishu.cn/wiki/FlYEwlKusiC6lZkjLcocqZ0LnKe" class="doc-link">https://jcaigc-doc.feishu.cn/wiki/FlYEwlKusiC6lZkjLcocqZ0LnKe</a>
+            </p>
+        </div>
+        
+        <footer>
+            <p>© 2025 简创AIGC 人工智能服务平台 | 提供稳定可靠的插件服务</p>
+            <p style="margin-top: 0.8rem;">技术支持V: gogoshine-com | 商务合作: gogoshine168@gmail.com</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 创建科技网格
+        function createGrid() {
+            const grid = document.getElementById('grid');
+            const size = 50;
+            
+            for (let x = 0; x < window.innerWidth; x += size) {
+                const verticalLine = document.createElement('div');
+                verticalLine.className = 'grid-line grid-vertical';
+                verticalLine.style.left = `${x}px`;
+                grid.appendChild(verticalLine);
+            }
+            
+            for (let y = 0; y < window.innerHeight; y += size) {
+                const horizontalLine = document.createElement('div');
+                horizontalLine.className = 'grid-line grid-horizontal';
+                horizontalLine.style.top = `${y}px`;
+                grid.appendChild(horizontalLine);
+            }
+        }
+        
+        // 创建六边形网格
+        function createHexGrid() {
+            const hexGrid = document.getElementById('hex-grid');
+            const hexSize = 120;
+            const rows = Math.ceil(window.innerHeight / (hexSize * 0.866)) + 2;
+            const cols = Math.ceil(window.innerWidth / hexSize) + 2;
+            
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    const hex = document.createElement('div');
+                    hex.className = 'hex';
+                    hex.style.width = `${hexSize}px`;
+                    hex.style.height = `${hexSize * 0.866}px`;
+                    
+                    // 奇偶行偏移
+                    const offset = row % 2 === 0 ? hexSize / 2 : 0;
+                    
+                    hex.style.left = `${col * hexSize - offset}px`;
+                    hex.style.top = `${row * hexSize * 0.75}px`;
+                    
+                    // 随机动画延迟
+                    hex.style.animationDelay = `${Math.random() * 60}s`;
+                    
+                    hexGrid.appendChild(hex);
+                }
+            }
+        }
+        
+        // 创建浮动粒子
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // 随机大小和位置
+                const size = Math.random() * 10 + 3;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100 + 100;
+                const delay = Math.random() * 15;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}vw`;
+                particle.style.top = `${top}vh`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // 随机颜色
+                const colors = [
+                    'rgba(92, 70, 156, 0.6)',
+                    'rgba(67, 198, 172, 0.6)',
+                    'rgba(142, 84, 233, 0.6)',
+                    'rgba(0, 219, 222, 0.6)'
+                ];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 初始化
+        window.addEventListener('load', () => {
+            if(window.location.pathname !== '/index.html' && window.location.pathname !== '/') {
+                window.location.href = '/';
+                return;
+            }
+            createGrid();
+            createHexGrid();
+            createParticles();
+        });
+    </script>
+</body>
+</html>
