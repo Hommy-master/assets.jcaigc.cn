@@ -112,8 +112,28 @@ function insertFooter() {
     document.getElementById("mainContainer").appendChild(footer);
 }
 
+function AddGTag() {
+    const getApiKeyBtn = document.getElementById('getApiKeyBtn');
+    const viewDocBtn = document.getElementById('viewDocBtn');
+
+    getApiKeyBtn?.addEventListener('click', function () {
+        gtag('event', 'get_api_key', {
+            method: 'Google',
+        });
+    });
+
+    viewDocBtn?.addEventListener('click', function () {
+        gtag('event', 'view_doc', {
+            method: 'Google',
+        });
+    });
+}
+
 // 初始化
 window.addEventListener("load", () => {
+    // 初始化Google Analytics
+    AddGTag();
+
     insertFooter();
 
     createGrid();
