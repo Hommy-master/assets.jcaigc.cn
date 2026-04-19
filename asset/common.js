@@ -88,7 +88,7 @@ function insertFooter() {
     footer.innerHTML = `
         <p>© 2025 简创AIGC 人工智能服务平台 | 提供稳定可靠的插件服务</p>
         <p>
-          技术支持V: gogoshine-com | 商务合作: gogoshine168@gmail.com
+          技术支持V: gogoshine-com | 商务合作: taohongmin51@gmail.com
         </p>
         <p>
             <span style="margin-right: 0.5rem">
