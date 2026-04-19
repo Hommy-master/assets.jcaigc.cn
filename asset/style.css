@@ -462,6 +462,15 @@
    width: 100%;
  }
 
+ .link-item .link-slogan {
+   display: block;
+   font-size: 0.85rem;
+   color: rgba(192, 192, 255, 0.72);
+   line-height: 1.45;
+   margin-top: -0.25rem;
+   padding-bottom: 0.35rem;
+ }
+
  .link-hint {
    font-size: 0.85rem;
    color: #6666aa;
